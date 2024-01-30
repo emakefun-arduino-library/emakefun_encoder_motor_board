@@ -1,0 +1,10 @@
+@INCLUDE_PATH  = doxygen
+@INCLUDE = base.cfg
+PROJECT_NAME     = "编码电机驱动板"
+PROJECT_NUMBER   = 1.0
+OUTPUT_LANGUAGE  = Chinese
+INPUT            = src \
+                   examples/move_position/move_position.ino \
+                   examples/move_position_to/move_position_to.ino \ 
+                   examples/run_pwm/run_pwm.ino \
+                   examples/run_speed/run_speed.ino

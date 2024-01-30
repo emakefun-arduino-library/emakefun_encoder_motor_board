@@ -1,0 +1,376 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.7"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>编码电机驱动板: D:/users/alex.huang/Documents/Arduino/libraries/emakefun_encoder_motor_board/src/encoder_motor_board.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">编码电机驱动板<span id="projectnumber">&#160;1.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.7 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">D:/users/alex.huang/Documents/Arduino/libraries/emakefun_encoder_motor_board/src/encoder_motor_board.h</div></div>
+</div><!--header-->
+<div class="contents">
+<p>重载[]操作符，可以像数组一样操作对每路编码电机进行操作</p>
+<p>重载[]操作符，可以像数组一样操作对每路编码电机进行操作</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>0 ~ 3 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>const EncoderMotor&amp; 编码电机对象引用</dd></dl>
+<p>const <a class="el" href="classemakefun_1_1_encoder_motor_board.html" title="编码电机驱动板类">emakefun::EncoderMotorBoard</a> encoder_motor_board(0x09); encoder_motor_board[1].RunPwm(255);</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#pragma once</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#include &lt;Wire.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;inttypes.h&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">namespace </span>emakefun {</div>
+<div class="line"><span class="comment"></span> </div>
+<div class="line"><span class="comment">/**</span></div>
+<div class="line"><span class="comment"> * @brief 编码电机驱动板类</span></div>
+<div class="line"><span class="comment"> *</span></div>
+<div class="line"><span class="comment"> */</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">class </span>EncoderMotorBoard {</div>
+<div class="line"> <span class="keyword">public</span>:<span class="comment"></span></div>
+<div class="line"><span class="comment">  /**</span></div>
+<div class="line"><span class="comment">   * @brief 最大支持编码电机数量</span></div>
+<div class="line"><span class="comment">   *</span></div>
+<div class="line"><span class="comment">   */</span></div>
+<div class="line">  <span class="keyword">static</span> <span class="keyword">constexpr</span> uint8_t <a id="a0" name="a0"></a><a class="code hl_variable" href="classemakefun_1_1_encoder_motor_board.html#afc98b963d2b3eeda5a6e2b9951f90b06">kEncoderMotorNum</a> = 4;</div>
+<div class="line"><span class="comment"></span> </div>
+<div class="line"><span class="comment">  /**</span></div>
+<div class="line"><span class="comment">   * @brief 默认I2C地址</span></div>
+<div class="line"><span class="comment">   *</span></div>
+<div class="line"><span class="comment">   */</span></div>
+<div class="line">  <span class="keyword">static</span> <span class="keyword">constexpr</span> uint8_t <a id="a1" name="a1"></a><a class="code hl_variable" href="classemakefun_1_1_encoder_motor_board.html#aba4d4a08064832e19b3ccd435d18acd6">kDefaultI2cAddress</a> = 0x09;</div>
+<div class="line"><span class="comment"></span> </div>
+<div class="line"><span class="comment">  /**</span></div>
+<div class="line"><span class="comment">   * @brief 编码电机类，每个对象对应一路编码电机</span></div>
+<div class="line"><span class="comment">   *</span></div>
+<div class="line"><span class="comment">   */</span></div>
+<div class="line">  <span class="keyword">class </span>EncoderMotor {</div>
+<div class="line">   <span class="keyword">public</span>:<span class="comment"></span></div>
+<div class="line"><span class="comment">    /**</span></div>
+<div class="line"><span class="comment">     * @brief 返回对应的编译电机位置</span></div>
+<div class="line"><span class="comment">     *</span></div>
+<div class="line"><span class="comment">     * @return uint8_t 范围为 0 ~ 3</span></div>
+<div class="line"><span class="comment">     */</span></div>
+<div class="line">    <span class="keyword">inline</span> uint8_t <a id="a2" name="a2"></a><a class="code hl_function" href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#a92249b2c7c681a51a195bc04facb6f62">Index</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> index_; }<span class="comment"></span></div>
+<div class="line"><span class="comment">    /**</span></div>
+<div class="line"><span class="comment">     * @brief 初始化函数</span></div>
+<div class="line"><span class="comment">     *</span></div>
+<div class="line"><span class="comment">     * @param wire TwoWire*对象</span></div>
+<div class="line"><span class="comment">     * @return true 代表成功</span></div>
+<div class="line"><span class="comment">     * @return false 代表失败</span></div>
+<div class="line"><span class="comment">     */</span></div>
+<div class="line">    <span class="keywordtype">bool</span> <a id="a3" name="a3"></a><a class="code hl_function" href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#a71724321d36b7a14badbc2f87d86eb63">Initialize</a>(TwoWire* <span class="keyword">const</span> wire);</div>
+<div class="line"><span class="comment"></span> </div>
+<div class="line"><span class="comment">    /**</span></div>
+<div class="line"><span class="comment">     * @brief 重置编码电机的所有参数，包括减速比、速度、PWM、位置信息、PID信息</span></div>
+<div class="line"><span class="comment">     *</span></div>
+<div class="line"><span class="comment">     */</span></div>
+<div class="line">    <span class="keywordtype">void</span> <a id="a4" name="a4"></a><a class="code hl_function" href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#a7ad52d8b819e3bbc89ac1bcf04d8a040">Reset</a>();<span class="comment"></span></div>
+<div class="line"><span class="comment">    /**</span></div>
+<div class="line"><span class="comment">     * @brief 停止转动</span></div>
+<div class="line"><span class="comment">     *</span></div>
+<div class="line"><span class="comment">     */</span></div>
+<div class="line">    <span class="keywordtype">void</span> <a id="a5" name="a5"></a><a class="code hl_function" href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#a70210bbf391740549d3390aa76c41753">Stop</a>();<span class="comment"></span></div>
+<div class="line"><span class="comment">    /**</span></div>
+<div class="line"><span class="comment">     * @brief 以指定速度转动</span></div>
+<div class="line"><span class="comment">     *</span></div>
+<div class="line"><span class="comment">     * @param speed 单位为RPM，大于0代表正向转动，小于0代表反向转动</span></div>
+<div class="line"><span class="comment">     */</span></div>
+<div class="line">    <span class="keywordtype">void</span> <a id="a6" name="a6"></a><a class="code hl_function" href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#ae80240610f6ad8fca1db4fd27ef1e84a">RunSpeed</a>(<span class="keyword">const</span> int16_t speed);<span class="comment"></span></div>
+<div class="line"><span class="comment">    /**</span></div>
+<div class="line"><span class="comment">     * @brief 以指定的PWM值转动</span></div>
+<div class="line"><span class="comment">     *</span></div>
+<div class="line"><span class="comment">     * @param pwm 大于0代表正向转动，小于0代表反向转动，范围为 -255 ~ 255</span></div>
+<div class="line"><span class="comment">     */</span></div>
+<div class="line">    <span class="keywordtype">void</span> <a id="a7" name="a7"></a><a class="code hl_function" href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#a160d96d40dc44382030bb3deb27e9afc">RunPwm</a>(<span class="keyword">const</span> int16_t pwm);<span class="comment"></span></div>
+<div class="line"><span class="comment">    /**</span></div>
+<div class="line"><span class="comment">     * @brief 以指定速度转动到相对位置</span></div>
+<div class="line"><span class="comment">     *</span></div>
+<div class="line"><span class="comment">     * @param position 角度位置，编码电机正转一圈角度位置会增加360，反转一圈角度位置会减少360</span></div>
+<div class="line"><span class="comment">     * @param speed 单位为RPM，必须大于0</span></div>
+<div class="line"><span class="comment">     */</span></div>
+<div class="line">    <span class="keywordtype">void</span> <a id="a8" name="a8"></a><a class="code hl_function" href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#a3eabe407f0b45acba7fe6a51e43bd522">MovePosition</a>(<span class="keyword">const</span> int32_t position, <span class="keyword">const</span> uint16_t speed);<span class="comment"></span></div>
+<div class="line"><span class="comment">    /**</span></div>
+<div class="line"><span class="comment">     * @brief 以指定速度转动到绝对位置</span></div>
+<div class="line"><span class="comment">     *</span></div>
+<div class="line"><span class="comment">     * @param position 角度位置，编码电机正转一圈角度位置会增加360，反转一圈角度位置会减少360</span></div>
+<div class="line"><span class="comment">     * @param speed 单位为RPM，必须大于0</span></div>
+<div class="line"><span class="comment">     */</span></div>
+<div class="line">    <span class="keywordtype">void</span> <a id="a9" name="a9"></a><a class="code hl_function" href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#a677dd2cbac653420bfd8e9caef17208a">MovePositionTo</a>(<span class="keyword">const</span> int32_t position, <span class="keyword">const</span> uint16_t speed);</div>
+<div class="line"><span class="comment"></span> </div>
+<div class="line"><span class="comment">    /**</span></div>
+<div class="line"><span class="comment">     * @brief 设置速度PID，如不设置会采用默认值</span></div>
+<div class="line"><span class="comment">     *</span></div>
+<div class="line"><span class="comment">     * @param p p值，最小为0.01，默认为0.8</span></div>
+<div class="line"><span class="comment">     * @param i i值，最小为0.01，默认为0.4</span></div>
+<div class="line"><span class="comment">     * @param d d值, 最小为0，默认为0</span></div>
+<div class="line"><span class="comment">     */</span></div>
+<div class="line">    <span class="keywordtype">void</span> <a id="a10" name="a10"></a><a class="code hl_function" href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#aff544867dfe8197a34c272a5dcd7bde5">SpeedPID</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> p, <span class="keyword">const</span> <span class="keywordtype">float</span> i, <span class="keyword">const</span> <span class="keywordtype">float</span> d);<span class="comment"></span></div>
+<div class="line"><span class="comment">    /**</span></div>
+<div class="line"><span class="comment">     * @brief 设置编码电机的减速比，默认为90</span></div>
+<div class="line"><span class="comment">     *</span></div>
+<div class="line"><span class="comment">     * @param value 减速比</span></div>
+<div class="line"><span class="comment">     */</span></div>
+<div class="line">    <span class="keywordtype">void</span> <a id="a11" name="a11"></a><a class="code hl_function" href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#ae29737e17d6cf358b3891be6b6890110">ReductionRatio</a>(<span class="keyword">const</span> uint8_t value);<span class="comment"></span></div>
+<div class="line"><span class="comment">    /**</span></div>
+<div class="line"><span class="comment">     * @brief 设置编码电机编码盘每转脉冲数(PPR)，默认为12</span></div>
+<div class="line"><span class="comment">     *</span></div>
+<div class="line"><span class="comment">     * @param value 每转脉冲数(PPR)</span></div>
+<div class="line"><span class="comment">     */</span></div>
+<div class="line">    <span class="keywordtype">void</span> <a id="a12" name="a12"></a><a class="code hl_function" href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#ab8d391b3b207f1369d3407ba5e68ea54">ABPpr</a>(<span class="keyword">const</span> uint8_t value);</div>
+<div class="line"><span class="comment"></span> </div>
+<div class="line"><span class="comment">    /**</span></div>
+<div class="line"><span class="comment">     * @brief 设置当前编码电机的角度位置，编码电机正转一圈角度位置会增加360，反转一圈角度位置会减少360</span></div>
+<div class="line"><span class="comment">     *</span></div>
+<div class="line"><span class="comment">     * @param value 角度位置</span></div>
+<div class="line"><span class="comment">     */</span></div>
+<div class="line">    <span class="keywordtype">void</span> <a id="a13" name="a13"></a><a class="code hl_function" href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#a77603d267259e7cfa785036ff4757ff1">CurrentPosition</a>(<span class="keyword">const</span> int32_t value);</div>
+<div class="line"><span class="comment"></span> </div>
+<div class="line"><span class="comment">    /**</span></div>
+<div class="line"><span class="comment">     * @brief 获取速度PID中的P值</span></div>
+<div class="line"><span class="comment">     *</span></div>
+<div class="line"><span class="comment">     * @return float</span></div>
+<div class="line"><span class="comment">     */</span></div>
+<div class="line">    <span class="keywordtype">float</span> <a id="a14" name="a14"></a><a class="code hl_function" href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#aa40d4177a210bd0313af3a8a485a37f6">SpeedP</a>() <span class="keyword">const</span>;<span class="comment"></span></div>
+<div class="line"><span class="comment">    /**</span></div>
+<div class="line"><span class="comment">     * @brief 获取速度PID中的I值</span></div>
+<div class="line"><span class="comment">     *</span></div>
+<div class="line"><span class="comment">     * @return float</span></div>
+<div class="line"><span class="comment">     */</span></div>
+<div class="line">    <span class="keywordtype">float</span> <a id="a15" name="a15"></a><a class="code hl_function" href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#aba87633c411d61822a07250be12e68c6">SpeedI</a>() <span class="keyword">const</span>;<span class="comment"></span></div>
+<div class="line"><span class="comment">    /**</span></div>
+<div class="line"><span class="comment">     * @brief 获取速度PID中的D值</span></div>
+<div class="line"><span class="comment">     *</span></div>
+<div class="line"><span class="comment">     * @return float</span></div>
+<div class="line"><span class="comment">     */</span></div>
+<div class="line">    <span class="keywordtype">float</span> <a id="a16" name="a16"></a><a class="code hl_function" href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#a73e71e1a9c08dcfc3542fd0133344a82">SpeedD</a>() <span class="keyword">const</span>;</div>
+<div class="line"><span class="comment"></span> </div>
+<div class="line"><span class="comment">    /**</span></div>
+<div class="line"><span class="comment">     * @brief 获取当前编码电机的减速比</span></div>
+<div class="line"><span class="comment">     *</span></div>
+<div class="line"><span class="comment">     * @return 减速比</span></div>
+<div class="line"><span class="comment">     */</span></div>
+<div class="line">    uint8_t <a class="code hl_function" href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#ae29737e17d6cf358b3891be6b6890110">ReductionRatio</a>() <span class="keyword">const</span>;</div>
+<div class="line"><span class="comment"></span> </div>
+<div class="line"><span class="comment">    /**</span></div>
+<div class="line"><span class="comment">     * @brief 获取当前编码电机的编码盘每转脉冲数(PPR)</span></div>
+<div class="line"><span class="comment">     *</span></div>
+<div class="line"><span class="comment">     * @return 每转脉冲数(PPR)</span></div>
+<div class="line"><span class="comment">     */</span></div>
+<div class="line">    uint8_t <a class="code hl_function" href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#ab8d391b3b207f1369d3407ba5e68ea54">ABPpr</a>() <span class="keyword">const</span>;</div>
+<div class="line"><span class="comment"></span> </div>
+<div class="line"><span class="comment">    /**</span></div>
+<div class="line"><span class="comment">     * @brief 获取当前PWM值</span></div>
+<div class="line"><span class="comment">     *</span></div>
+<div class="line"><span class="comment">     * @return PWM值</span></div>
+<div class="line"><span class="comment">     */</span></div>
+<div class="line">    int16_t <a id="a17" name="a17"></a><a class="code hl_function" href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#ad26e82cbf4e61807cddf5ad8c873809f">CurrentPwm</a>() <span class="keyword">const</span>;</div>
+<div class="line"><span class="comment"></span> </div>
+<div class="line"><span class="comment">    /**</span></div>
+<div class="line"><span class="comment">     * @brief 设置在编码电机正转时,A相上升沿对应B相的电平逻辑</span></div>
+<div class="line"><span class="comment">     * @details 编码电机的A相和B相之间存在90度的电气相位差。不同型号的编码电机,其A相上升沿时刻B相的电平可能是高或低</span></div>
+<div class="line"><span class="comment">     *          所以需要设置这个标志位来匹配具体电机的A、B相布线与正转方向的关系</span></div>
+<div class="line"><span class="comment">     *</span></div>
+<div class="line"><span class="comment">     * @param level 当该标志位为1时,表示A相上升沿检测到B相高电平判定为正转</span></div>
+<div class="line"><span class="comment">     *              当该标志位为0时,表示A相上升沿检测到B相低电平判定为正转</span></div>
+<div class="line"><span class="comment">     *              默认为0</span></div>
+<div class="line"><span class="comment">     */</span></div>
+<div class="line">    <span class="keywordtype">void</span> <a id="a18" name="a18"></a><a class="code hl_function" href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#a1f87c0ef2cd32b4c005b191cfde3dc81">PositiveBLevel</a>(<span class="keyword">const</span> uint8_t level);<span class="comment"></span></div>
+<div class="line"><span class="comment">    /**</span></div>
+<div class="line"><span class="comment">     * @brief 获取编码电机正转时,A相上升沿对应B相的电平逻辑</span></div>
+<div class="line"><span class="comment">     *</span></div>
+<div class="line"><span class="comment">     * @return 编码电机正转时,A相上升沿对应B相的电平逻辑</span></div>
+<div class="line"><span class="comment">     */</span></div>
+<div class="line">    uint8_t <a class="code hl_function" href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#a1f87c0ef2cd32b4c005b191cfde3dc81">PositiveBLevel</a>() <span class="keyword">const</span>;</div>
+<div class="line"><span class="comment"></span> </div>
+<div class="line"><span class="comment">    /**</span></div>
+<div class="line"><span class="comment">     * @brief 获取当前转动速度</span></div>
+<div class="line"><span class="comment">     *</span></div>
+<div class="line"><span class="comment">     * @return 当前转动速度，单位为RPM，正值代表正转，负值代表反转</span></div>
+<div class="line"><span class="comment">     */</span></div>
+<div class="line">    <span class="keywordtype">float</span> <a id="a19" name="a19"></a><a class="code hl_function" href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#ac63a09ca073ca3475642fe152bf4ce91">CurrentSpeed</a>() <span class="keyword">const</span>;</div>
+<div class="line"><span class="comment"></span> </div>
+<div class="line"><span class="comment">    /**</span></div>
+<div class="line"><span class="comment">     * @brief 获取当前的角度位置</span></div>
+<div class="line"><span class="comment">     *</span></div>
+<div class="line"><span class="comment">     * @return 角度位置</span></div>
+<div class="line"><span class="comment">     */</span></div>
+<div class="line">    int32_t <a class="code hl_function" href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#a77603d267259e7cfa785036ff4757ff1">CurrentPosition</a>() <span class="keyword">const</span>;</div>
+<div class="line"><span class="comment"></span> </div>
+<div class="line"><span class="comment">    /**</span></div>
+<div class="line"><span class="comment">     * @brief 查询是否转动到指定位置</span></div>
+<div class="line"><span class="comment">     *</span></div>
+<div class="line"><span class="comment">     * @return true 代表转动到指定位置</span></div>
+<div class="line"><span class="comment">     * @return false 未转动到指定位置</span></div>
+<div class="line"><span class="comment">     */</span></div>
+<div class="line">    <span class="keywordtype">bool</span> <a id="a20" name="a20"></a><a class="code hl_function" href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#a7606b09d542c3fb3b44a1ad369e2c494">IsTargetPositionReached</a>() <span class="keyword">const</span>;</div>
+<div class="line"> </div>
+<div class="line">   <span class="keyword">private</span>:</div>
+<div class="line">    <span class="keyword">friend</span> EncoderMotorBoard;</div>
+<div class="line">    EncoderMotor(<span class="keyword">const</span> uint8_t i2c_address, <span class="keyword">const</span> uint8_t index);</div>
+<div class="line">    EncoderMotor operator=(<span class="keyword">const</span> EncoderMotor&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line">    EncoderMotor(<span class="keyword">const</span> EncoderMotor&amp;) = <span class="keywordflow">default</span>;</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">const</span> uint8_t i2c_address_ = 0x00;</div>
+<div class="line">    <span class="keyword">const</span> uint8_t index_ = 0;</div>
+<div class="line">    TwoWire* wire_ = <span class="keyword">nullptr</span>;</div>
+<div class="line">  };</div>
+<div class="line"> </div>
+<div class="line">  <span class="keyword">class </span>Iterator {</div>
+<div class="line">   <span class="keyword">public</span>:</div>
+<div class="line">    Iterator(EncoderMotor* <span class="keyword">const</span> encoder_motor) : encoder_motor_(encoder_motor) {}</div>
+<div class="line"> </div>
+<div class="line">    EncoderMotor&amp; operator*()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> *encoder_motor_; }</div>
+<div class="line"> </div>
+<div class="line">    Iterator&amp; operator++() {</div>
+<div class="line">      encoder_motor_++;</div>
+<div class="line">      <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordtype">bool</span> operator!=(<span class="keyword">const</span> Iterator&amp; other)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> encoder_motor_ != other.encoder_motor_; }</div>
+<div class="line"> </div>
+<div class="line">   <span class="keyword">private</span>:</div>
+<div class="line">    EncoderMotor* encoder_motor_;</div>
+<div class="line">  };</div>
+<div class="line"> </div>
+<div class="line">  EncoderMotorBoard(<span class="keyword">const</span> uint8_t i2c_address = <a class="code hl_variable" href="classemakefun_1_1_encoder_motor_board.html#aba4d4a08064832e19b3ccd435d18acd6">kDefaultI2cAddress</a>);</div>
+<div class="line"><span class="comment"></span> </div>
+<div class="line"><span class="comment">  /**</span></div>
+<div class="line"><span class="comment">   * @brief 初始化</span></div>
+<div class="line"><span class="comment">   *</span></div>
+<div class="line"><span class="comment">   * @param[in] wire Wire对象的地址，用于I2C通讯，可选，默认使用Arduino标准的Wire对象进行I2C通讯</span></div>
+<div class="line"><span class="comment">   * @return true 初始化成功</span></div>
+<div class="line"><span class="comment">   * @return false 初始化失败</span></div>
+<div class="line"><span class="comment">   */</span></div>
+<div class="line">  <span class="keywordtype">bool</span> <a id="a21" name="a21"></a><a class="code hl_function" href="classemakefun_1_1_encoder_motor_board.html#acc62c85627c72ab0f4576cfc190a8a29">Initialize</a>(TwoWire* <span class="keyword">const</span> wire = &amp;Wire);</div>
+<div class="line"><span class="comment"></span> </div>
+<div class="line"><span class="comment">  /**</span></div>
+<div class="line"><span class="comment">   * @brief 获取驱动板固件版本号</span></div>
+<div class="line"><span class="comment">   *</span></div>
+<div class="line"><span class="comment">   * @return 驱动板固件版本号</span></div>
+<div class="line"><span class="comment">   */</span></div>
+<div class="line">  uint8_t <a id="a22" name="a22"></a><a class="code hl_function" href="classemakefun_1_1_encoder_motor_board.html#addeb06738321fd90673e38c5d21c9afe">Version</a>();</div>
+<div class="line"><span class="comment"></span> </div>
+<div class="line"><span class="comment">  /**</span></div>
+<div class="line"><span class="comment">   * @brief 重载[]操作符，可以像数组一样操作对每路编码电机进行操作</span></div>
+<div class="line"><span class="comment">   * </span></div>
+<div class="line"><span class="comment">   * @param index 0 ~ 3</span></div>
+<div class="line"><span class="comment">   * @return const EncoderMotor&amp; 编码电机对象引用</span></div>
+<div class="line"><span class="comment">   * </span></div>
+<div class="line"><span class="comment">   * @example</span></div>
+<div class="line"><span class="comment">   * const emakefun::EncoderMotorBoard encoder_motor_board(0x09);</span></div>
+<div class="line"><span class="comment">   * encoder_motor_board[1].RunPwm(255);</span></div>
+<div class="line"><span class="comment">   * </span></div>
+<div class="line"><span class="comment">   */</span></div>
+<div class="line">  <span class="keyword">inline</span> <span class="keyword">const</span> EncoderMotor&amp; operator[](<span class="keyword">const</span> uint8_t index) { <span class="keywordflow">return</span> encoder_motors_[index]; }</div>
+<div class="line">  <span class="keyword">inline</span> <span class="keyword">const</span> EncoderMotor (&amp;EncoderMotors())[<a class="code hl_variable" href="classemakefun_1_1_encoder_motor_board.html#afc98b963d2b3eeda5a6e2b9951f90b06">kEncoderMotorNum</a>] { <span class="keywordflow">return</span> encoder_motors_; }</div>
+<div class="line">  Iterator begin() { <span class="keywordflow">return</span> Iterator(encoder_motors_); }</div>
+<div class="line">  Iterator end() { <span class="keywordflow">return</span> Iterator(encoder_motors_ + <a class="code hl_variable" href="classemakefun_1_1_encoder_motor_board.html#afc98b963d2b3eeda5a6e2b9951f90b06">kEncoderMotorNum</a>); }</div>
+<div class="line"> </div>
+<div class="line"> <span class="keyword">private</span>:</div>
+<div class="line">  EncoderMotorBoard operator=(<span class="keyword">const</span> EncoderMotorBoard&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line">  EncoderMotorBoard(<span class="keyword">const</span> EncoderMotorBoard&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"> </div>
+<div class="line">  <span class="keyword">const</span> uint8_t i2c_address_ = 0x00;</div>
+<div class="line">  <span class="keyword">const</span> EncoderMotor encoder_motors_[<a class="code hl_variable" href="classemakefun_1_1_encoder_motor_board.html#afc98b963d2b3eeda5a6e2b9951f90b06">kEncoderMotorNum</a>];</div>
+<div class="line">  TwoWire* wire_ = <span class="keyword">nullptr</span>;</div>
+<div class="line">};</div>
+<div class="line"> </div>
+<div class="line">}  <span class="comment">// namespace emakefun</span></div>
+<div class="ttc" id="aclassemakefun_1_1_encoder_motor_board_1_1_encoder_motor_html_a160d96d40dc44382030bb3deb27e9afc"><div class="ttname"><a href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#a160d96d40dc44382030bb3deb27e9afc">emakefun::EncoderMotorBoard::EncoderMotor::RunPwm</a></div><div class="ttdeci">void RunPwm(const int16_t pwm)</div><div class="ttdoc">以指定的PWM值转动</div><div class="ttdef"><b>Definition</b> encoder_motor_board.cpp:64</div></div>
+<div class="ttc" id="aclassemakefun_1_1_encoder_motor_board_1_1_encoder_motor_html_a1f87c0ef2cd32b4c005b191cfde3dc81"><div class="ttname"><a href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#a1f87c0ef2cd32b4c005b191cfde3dc81">emakefun::EncoderMotorBoard::EncoderMotor::PositiveBLevel</a></div><div class="ttdeci">uint8_t PositiveBLevel() const</div><div class="ttdoc">获取编码电机正转时,A相上升沿对应B相的电平逻辑</div><div class="ttdef"><b>Definition</b> encoder_motor_board.cpp:188</div></div>
+<div class="ttc" id="aclassemakefun_1_1_encoder_motor_board_1_1_encoder_motor_html_a3eabe407f0b45acba7fe6a51e43bd522"><div class="ttname"><a href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#a3eabe407f0b45acba7fe6a51e43bd522">emakefun::EncoderMotorBoard::EncoderMotor::MovePosition</a></div><div class="ttdeci">void MovePosition(const int32_t position, const uint16_t speed)</div><div class="ttdoc">以指定速度转动到相对位置</div><div class="ttdef"><b>Definition</b> encoder_motor_board.cpp:72</div></div>
+<div class="ttc" id="aclassemakefun_1_1_encoder_motor_board_1_1_encoder_motor_html_a677dd2cbac653420bfd8e9caef17208a"><div class="ttname"><a href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#a677dd2cbac653420bfd8e9caef17208a">emakefun::EncoderMotorBoard::EncoderMotor::MovePositionTo</a></div><div class="ttdeci">void MovePositionTo(const int32_t position, const uint16_t speed)</div><div class="ttdoc">以指定速度转动到绝对位置</div><div class="ttdef"><b>Definition</b> encoder_motor_board.cpp:81</div></div>
+<div class="ttc" id="aclassemakefun_1_1_encoder_motor_board_1_1_encoder_motor_html_a70210bbf391740549d3390aa76c41753"><div class="ttname"><a href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#a70210bbf391740549d3390aa76c41753">emakefun::EncoderMotorBoard::EncoderMotor::Stop</a></div><div class="ttdeci">void Stop()</div><div class="ttdoc">停止转动</div><div class="ttdef"><b>Definition</b> encoder_motor_board.cpp:49</div></div>
+<div class="ttc" id="aclassemakefun_1_1_encoder_motor_board_1_1_encoder_motor_html_a71724321d36b7a14badbc2f87d86eb63"><div class="ttname"><a href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#a71724321d36b7a14badbc2f87d86eb63">emakefun::EncoderMotorBoard::EncoderMotor::Initialize</a></div><div class="ttdeci">bool Initialize(TwoWire *const wire)</div><div class="ttdoc">初始化函数</div><div class="ttdef"><b>Definition</b> encoder_motor_board.cpp:36</div></div>
+<div class="ttc" id="aclassemakefun_1_1_encoder_motor_board_1_1_encoder_motor_html_a73e71e1a9c08dcfc3542fd0133344a82"><div class="ttname"><a href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#a73e71e1a9c08dcfc3542fd0133344a82">emakefun::EncoderMotorBoard::EncoderMotor::SpeedD</a></div><div class="ttdeci">float SpeedD() const</div><div class="ttdoc">获取速度PID中的D值</div><div class="ttdef"><b>Definition</b> encoder_motor_board.cpp:151</div></div>
+<div class="ttc" id="aclassemakefun_1_1_encoder_motor_board_1_1_encoder_motor_html_a7606b09d542c3fb3b44a1ad369e2c494"><div class="ttname"><a href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#a7606b09d542c3fb3b44a1ad369e2c494">emakefun::EncoderMotorBoard::EncoderMotor::IsTargetPositionReached</a></div><div class="ttdeci">bool IsTargetPositionReached() const</div><div class="ttdoc">查询是否转动到指定位置</div><div class="ttdef"><b>Definition</b> encoder_motor_board.cpp:233</div></div>
+<div class="ttc" id="aclassemakefun_1_1_encoder_motor_board_1_1_encoder_motor_html_a77603d267259e7cfa785036ff4757ff1"><div class="ttname"><a href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#a77603d267259e7cfa785036ff4757ff1">emakefun::EncoderMotorBoard::EncoderMotor::CurrentPosition</a></div><div class="ttdeci">int32_t CurrentPosition() const</div><div class="ttdoc">获取当前的角度位置</div><div class="ttdef"><b>Definition</b> encoder_motor_board.cpp:221</div></div>
+<div class="ttc" id="aclassemakefun_1_1_encoder_motor_board_1_1_encoder_motor_html_a7ad52d8b819e3bbc89ac1bcf04d8a040"><div class="ttname"><a href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#a7ad52d8b819e3bbc89ac1bcf04d8a040">emakefun::EncoderMotorBoard::EncoderMotor::Reset</a></div><div class="ttdeci">void Reset()</div><div class="ttdoc">重置编码电机的所有参数，包括减速比、速度、PWM、位置信息、PID信息</div><div class="ttdef"><b>Definition</b> encoder_motor_board.cpp:42</div></div>
+<div class="ttc" id="aclassemakefun_1_1_encoder_motor_board_1_1_encoder_motor_html_a92249b2c7c681a51a195bc04facb6f62"><div class="ttname"><a href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#a92249b2c7c681a51a195bc04facb6f62">emakefun::EncoderMotorBoard::EncoderMotor::Index</a></div><div class="ttdeci">uint8_t Index() const</div><div class="ttdoc">返回对应的编译电机位置</div><div class="ttdef"><b>Definition</b> encoder_motor_board.h:38</div></div>
+<div class="ttc" id="aclassemakefun_1_1_encoder_motor_board_1_1_encoder_motor_html_aa40d4177a210bd0313af3a8a485a37f6"><div class="ttname"><a href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#aa40d4177a210bd0313af3a8a485a37f6">emakefun::EncoderMotorBoard::EncoderMotor::SpeedP</a></div><div class="ttdeci">float SpeedP() const</div><div class="ttdoc">获取速度PID中的P值</div><div class="ttdef"><b>Definition</b> encoder_motor_board.cpp:127</div></div>
+<div class="ttc" id="aclassemakefun_1_1_encoder_motor_board_1_1_encoder_motor_html_ab8d391b3b207f1369d3407ba5e68ea54"><div class="ttname"><a href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#ab8d391b3b207f1369d3407ba5e68ea54">emakefun::EncoderMotorBoard::EncoderMotor::ABPpr</a></div><div class="ttdeci">uint8_t ABPpr() const</div><div class="ttdoc">获取当前编码电机的编码盘每转脉冲数(PPR)</div><div class="ttdef"><b>Definition</b> encoder_motor_board.cpp:171</div></div>
+<div class="ttc" id="aclassemakefun_1_1_encoder_motor_board_1_1_encoder_motor_html_aba87633c411d61822a07250be12e68c6"><div class="ttname"><a href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#aba87633c411d61822a07250be12e68c6">emakefun::EncoderMotorBoard::EncoderMotor::SpeedI</a></div><div class="ttdeci">float SpeedI() const</div><div class="ttdoc">获取速度PID中的I值</div><div class="ttdef"><b>Definition</b> encoder_motor_board.cpp:139</div></div>
+<div class="ttc" id="aclassemakefun_1_1_encoder_motor_board_1_1_encoder_motor_html_ac63a09ca073ca3475642fe152bf4ce91"><div class="ttname"><a href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#ac63a09ca073ca3475642fe152bf4ce91">emakefun::EncoderMotorBoard::EncoderMotor::CurrentSpeed</a></div><div class="ttdeci">float CurrentSpeed() const</div><div class="ttdoc">获取当前转动速度</div><div class="ttdef"><b>Definition</b> encoder_motor_board.cpp:209</div></div>
+<div class="ttc" id="aclassemakefun_1_1_encoder_motor_board_1_1_encoder_motor_html_ad26e82cbf4e61807cddf5ad8c873809f"><div class="ttname"><a href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#ad26e82cbf4e61807cddf5ad8c873809f">emakefun::EncoderMotorBoard::EncoderMotor::CurrentPwm</a></div><div class="ttdeci">int16_t CurrentPwm() const</div><div class="ttdoc">获取当前PWM值</div><div class="ttdef"><b>Definition</b> encoder_motor_board.cpp:197</div></div>
+<div class="ttc" id="aclassemakefun_1_1_encoder_motor_board_1_1_encoder_motor_html_ae29737e17d6cf358b3891be6b6890110"><div class="ttname"><a href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#ae29737e17d6cf358b3891be6b6890110">emakefun::EncoderMotorBoard::EncoderMotor::ReductionRatio</a></div><div class="ttdeci">uint8_t ReductionRatio() const</div><div class="ttdoc">获取当前编码电机的减速比</div><div class="ttdef"><b>Definition</b> encoder_motor_board.cpp:163</div></div>
+<div class="ttc" id="aclassemakefun_1_1_encoder_motor_board_1_1_encoder_motor_html_ae80240610f6ad8fca1db4fd27ef1e84a"><div class="ttname"><a href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#ae80240610f6ad8fca1db4fd27ef1e84a">emakefun::EncoderMotorBoard::EncoderMotor::RunSpeed</a></div><div class="ttdeci">void RunSpeed(const int16_t speed)</div><div class="ttdoc">以指定速度转动</div><div class="ttdef"><b>Definition</b> encoder_motor_board.cpp:56</div></div>
+<div class="ttc" id="aclassemakefun_1_1_encoder_motor_board_1_1_encoder_motor_html_aff544867dfe8197a34c272a5dcd7bde5"><div class="ttname"><a href="classemakefun_1_1_encoder_motor_board_1_1_encoder_motor.html#aff544867dfe8197a34c272a5dcd7bde5">emakefun::EncoderMotorBoard::EncoderMotor::SpeedPID</a></div><div class="ttdeci">void SpeedPID(const float p, const float i, const float d)</div><div class="ttdoc">设置速度PID，如不设置会采用默认值</div><div class="ttdef"><b>Definition</b> encoder_motor_board.cpp:90</div></div>
+<div class="ttc" id="aclassemakefun_1_1_encoder_motor_board_html_aba4d4a08064832e19b3ccd435d18acd6"><div class="ttname"><a href="classemakefun_1_1_encoder_motor_board.html#aba4d4a08064832e19b3ccd435d18acd6">emakefun::EncoderMotorBoard::kDefaultI2cAddress</a></div><div class="ttdeci">static constexpr uint8_t kDefaultI2cAddress</div><div class="ttdoc">默认I2C地址</div><div class="ttdef"><b>Definition</b> encoder_motor_board.h:25</div></div>
+<div class="ttc" id="aclassemakefun_1_1_encoder_motor_board_html_acc62c85627c72ab0f4576cfc190a8a29"><div class="ttname"><a href="classemakefun_1_1_encoder_motor_board.html#acc62c85627c72ab0f4576cfc190a8a29">emakefun::EncoderMotorBoard::Initialize</a></div><div class="ttdeci">bool Initialize(TwoWire *const wire=&amp;Wire)</div><div class="ttdoc">初始化</div><div class="ttdef"><b>Definition</b> encoder_motor_board.cpp:247</div></div>
+<div class="ttc" id="aclassemakefun_1_1_encoder_motor_board_html_addeb06738321fd90673e38c5d21c9afe"><div class="ttname"><a href="classemakefun_1_1_encoder_motor_board.html#addeb06738321fd90673e38c5d21c9afe">emakefun::EncoderMotorBoard::Version</a></div><div class="ttdeci">uint8_t Version()</div><div class="ttdoc">获取驱动板固件版本号</div><div class="ttdef"><b>Definition</b> encoder_motor_board.cpp:256</div></div>
+<div class="ttc" id="aclassemakefun_1_1_encoder_motor_board_html_afc98b963d2b3eeda5a6e2b9951f90b06"><div class="ttname"><a href="classemakefun_1_1_encoder_motor_board.html#afc98b963d2b3eeda5a6e2b9951f90b06">emakefun::EncoderMotorBoard::kEncoderMotorNum</a></div><div class="ttdeci">static constexpr uint8_t kEncoderMotorNum</div><div class="ttdoc">最大支持编码电机数量</div><div class="ttdef"><b>Definition</b> encoder_motor_board.h:19</div></div>
+</div><!-- fragment --> </div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7
+</small></address>
+</body>
+</html>
